@@ -1,0 +1,37 @@
+services:
+  db:
+    image: postgres:15
+    container_name: db
+    restart: always
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "secret"
+      POSTGRES_DB: "mydb"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "SELECT","1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    
+  app:
+    build: ./app
+    container_name: app
+    restart: always
+    env_file: .env
+    depends_on:
+      - db
+      - price_manager
+    
+  price_manager: 
+    build: ./price_manager
+    container_name: price_manager
+    restart: always
+    depends_on:
+      - db
+    
+
+volumes:
+  db_data:

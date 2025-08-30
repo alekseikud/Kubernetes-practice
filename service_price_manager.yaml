@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: price-manager
+spec:
+  selector:
+    app: price-manager        # must match labels on your Postgres Deployment pods
+  ports:
+    - port: 8000
+      targetPort: 8000
