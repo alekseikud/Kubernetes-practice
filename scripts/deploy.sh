@@ -1,0 +1,1 @@
+kubectl apply -f deployment_price_manager.yaml && kubectl apply -f deployment_db.yaml && kubectl apply -f deployment_app.yaml
