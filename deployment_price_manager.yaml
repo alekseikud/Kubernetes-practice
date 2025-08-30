@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: price-manager
-        image: kudelich/price_manager:2.0
+        image: kudelich/price_manager:3.0
         resources:
           requests:
             memory: "128Mi"
