@@ -23,3 +23,5 @@ jobs:
 
       - name: Run deployment script
         run: bash ./scripts/deploy.sh
+
+        
