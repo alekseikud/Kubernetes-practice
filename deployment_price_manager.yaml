@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: price-manager
-        image: kudelich/price_manager:1.0
+        image: kudelich/price_manager:2.0
         resources:
           requests:
             memory: "128Mi"
@@ -29,4 +29,11 @@ spec:
             cpu: "50m"
         ports:
         - containerPort: 8000
+        readinessProbe:
+          httpGet:
+            path: /number
+            port: 8000
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          failureThreshold: 6
 

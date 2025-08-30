@@ -38,7 +38,7 @@ if __name__=="__main__":
                        price NUMERIC(10,5) NOT NULL,\
                        created_at TIMESTAMPTZ DEFAULT NOW())")
         while True:
-            time.sleep(5)
+            time.sleep(10)
             request=requests.get("http://price-manager:8000/number")
             price=json.loads(request.text)["conversion_rate"]
             cursor.execute("INSERT INTO prices(price) VALUES (%s)",(round(price,5),))
