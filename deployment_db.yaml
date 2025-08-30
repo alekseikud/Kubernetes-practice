@@ -38,14 +38,11 @@ spec:
         - containerPort: 5432
         readinessProbe:
           exec:
-            command:
-            - sh
-            - -c
-            - |
-              psql -U postgres -d mydb -c "SELECT 1;" >/dev/null
-          initialDelaySeconds: 20
+            command: ["pg_isready", "-U", "postgres", "-d", "mydb"]
+          initialDelaySeconds: 10
           periodSeconds: 5
-          failureThreshold: 3
+          failureThreshold: 6
+
         livenessProbe:
           exec:
             command: ["pg_isready", "-U", "postgres"]
