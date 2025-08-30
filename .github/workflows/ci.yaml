@@ -28,8 +28,9 @@ jobs:
             
             - name: Validate manifests with kubeconform
               run: |
-                find . -type f -name "*.yaml" -o -name "*.yml" | \
-                xargs kubeconform -strict -ignore-missing-schemas
-
+                find . -type f \( -name "*.yaml" -o -name "*.yml" \) \
+                ! -path "./.github/workflows/*" \
+                ! -name "docker-compose.yaml" \
+                | xargs kubeconform -strict -ignore-missing-schemas
 
 
