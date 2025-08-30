@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: db
+spec:
+  selector:
+    app: db         # must match labels on your Postgres Deployment pods
+  ports:
+    - port: 5432
+      targetPort: 5432
